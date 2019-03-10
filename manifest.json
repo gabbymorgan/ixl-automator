@@ -1,0 +1,19 @@
+{
+  "name": "IXL Automator",
+  "version": "1.0",
+  "description": "Helpful features for online learning",
+  "permissions": ["activeTab", "declarativeContent","storage", "alarms"],
+  "content_scripts": [
+    {
+      "matches": ["https://*.ixl.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "16": "images/get_started16.png",
+    "32": "images/get_started32.png",
+    "48": "images/get_started48.png",
+    "128": "images/get_started128.png"
+  },
+  "manifest_version": 2
+}
