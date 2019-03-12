@@ -21,10 +21,18 @@ var init = () => {
       });
     }
   }
+  var submitButton = document.getElementsByClassName('crisp-button')[3]
+  if (submitButton) {
+    submitButton.addEventListener("click", () => {
+      stopWaiting();
+    });
+  }
 }
 
 var clockWatcher = new MutationObserver(function (mutations) {
-  alert("Time's up!");
+  if (Array.from(mutations[0].target.classList).includes("timer-paused")) {
+    alert("Times up!");
+  }
 });
 
 var observerConfig = {
