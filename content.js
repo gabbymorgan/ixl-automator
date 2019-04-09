@@ -1,5 +1,6 @@
 
 var waitOneMoment;
+var timerInProgress;
 var choiceNodeClassNames = ['TileSkinBare', 'SelectableTile', 'numberButton', "TileSkinClassic"];
 var startWaiting = () => {
   waitOneMoment = setTimeout(() => {
@@ -22,7 +23,7 @@ var checkForBreak = () => {
   // const score = document.getElementById('currentscore').innerText;
   const attempts = document.getElementById('problems-attempted').innerText;
   console.log({ attempts });
-  if (attempts % 20 === 0) {
+  if (attempts % 20 === 0 && !timerInProgress) {
     const takeBreak = document.createElement('div');
     takeBreakStyles = {
       width: "100vw",
@@ -46,8 +47,10 @@ var checkForBreak = () => {
     applyAttrs(breakTimer, iframeAttrs);
     takeBreak.appendChild(breakTimer);
     document.body.appendChild(takeBreak);
+    timerInProgress = true;
     setTimeout(() => {
       takeBreak.remove();
+      timerInProgress = false;
     }, 1000 * 60 * 10.25);
   }
 };
@@ -76,7 +79,7 @@ var init = () => {
 
 var clockWatcher = new MutationObserver(function (mutations) {
   if (Array.from(mutations[0].target.classList).includes("timer-paused")) {
-    checkForBreak();
+    alert('Times up! Make a selection and hit submit!');
   }
 });
 
